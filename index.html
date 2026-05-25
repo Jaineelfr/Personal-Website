@@ -97,7 +97,7 @@
       transform: rotate(45deg);
     }
 
-    .nav-logo-wrap:hover .home-balloon {
+    .home-balloon.visible {
       transform: scale(1);
       opacity: 1;
     }
@@ -895,6 +895,12 @@
 </main>
 
 <script>
+  // Balloon: only show while cursor is over the home button icon itself
+  const homeBtn = document.querySelector('.nav-home-btn');
+  const balloon = document.querySelector('.home-balloon');
+  homeBtn.addEventListener('mouseenter', () => balloon.classList.add('visible'));
+  homeBtn.addEventListener('mouseleave', () => balloon.classList.remove('visible'));
+
   function show(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
