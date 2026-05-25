@@ -44,13 +44,103 @@
       z-index: 100;
     }
 
-    .nav-logo {
-      font-size: .9rem;
-      font-weight: 600;
-      letter-spacing: -.02em;
+    /* ── HOME LOGO + BALLOON PREVIEW ── */
+    .nav-logo-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-home-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--bg);
       color: var(--text);
       cursor: pointer;
-      user-select: none;
+      transition: background .15s, border-color .15s;
+      flex-shrink: 0;
+    }
+    .nav-home-btn:hover { background: var(--bg2); border-color: #ccc; }
+
+    .home-balloon {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      width: 280px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.1), 0 2px 8px rgba(0,0,0,.06);
+      transform-origin: top left;
+      transform: scale(0.55);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform .28s cubic-bezier(.34,1.56,.64,1),
+        opacity   .15s ease;
+      z-index: 200;
+    }
+    /* little arrow pointing up to the icon */
+    .home-balloon::before {
+      content: '';
+      position: absolute;
+      top: -5px; left: 12px;
+      width: 9px; height: 9px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+      transform: rotate(45deg);
+    }
+
+    .nav-logo-wrap:hover .home-balloon {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .balloon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .2rem .6rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: .65rem;
+      color: var(--muted);
+      background: var(--bg2);
+      margin-bottom: .75rem;
+    }
+    .balloon-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--text);
+      animation: blink 2.5s ease infinite;
+    }
+    .balloon-name {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: .35rem;
+    }
+    .balloon-role {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-bottom: .9rem;
+      line-height: 1.5;
+    }
+    .balloon-hint {
+      font-size: .68rem;
+      color: #bbb;
+      border-top: 1px solid var(--border);
+      padding-top: .65rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
     }
 
     .nav-tabs {
@@ -457,7 +547,22 @@
 
 <!-- ── NAV ── -->
 <nav>
-  <span class="nav-logo" onclick="show('home')">jp.</span>
+  <div class="nav-logo-wrap">
+    <button class="nav-home-btn" onclick="show('home')" title="Home">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/>
+      </svg>
+    </button>
+    <div class="home-balloon">
+      <div class="balloon-badge"><div class="balloon-dot"></div>Open to internships · 2025</div>
+      <div class="balloon-name">Jaineel<br>Patel</div>
+      <div class="balloon-role">Computer Engineering Student &amp;<br>Full-Stack Developer</div>
+      <div class="balloon-hint">
+        <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14L21 3M21 3"/><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+        Click to open home
+      </div>
+    </div>
+  </div>
 
   <ul class="nav-tabs">
     <li><span class="nav-tab" data-page="about"      onclick="show('about')">About</span></li>
