@@ -197,7 +197,20 @@
       padding: 3.5rem 2rem 5rem;
     }
 
-    /* home gets centered vertically */
+    /* home gets centered vertically + skyline bg */
+    #page-home {
+      position: relative;
+    }
+    #page-home::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1517090504586-fde19ea6066f?w=1800&q=80&auto=format&fit=crop') center 60% / cover no-repeat;
+      filter: grayscale(1) contrast(.85);
+      opacity: .09;
+      pointer-events: none;
+      z-index: 0;
+    }
     #page-home .wrap {
       min-height: calc(100vh - 62px);
       display: flex;
@@ -205,6 +218,8 @@
       justify-content: center;
       padding-top: 2rem;
       padding-bottom: 2rem;
+      position: relative;
+      z-index: 1;
     }
 
     /* ── TYPOGRAPHY ── */
@@ -226,25 +241,6 @@
     }
 
     /* ── HOME ── */
-    .home-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .28rem .75rem;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: .73rem;
-      color: var(--muted);
-      margin-bottom: 1.75rem;
-      background: var(--bg2);
-    }
-    .home-badge-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--text);
-      animation: blink 2.5s ease infinite;
-    }
-
     .home-name {
       font-size: clamp(3.2rem, 9vw, 6.5rem);
       font-weight: 700;
@@ -554,7 +550,6 @@
       </svg>
     </button>
     <div class="home-balloon">
-      <div class="balloon-badge"><div class="balloon-dot"></div>Open to internships · 2025</div>
       <div class="balloon-name">Jaineel<br>Patel</div>
       <div class="balloon-role">Computer Engineering Student &amp;<br>Full-Stack Developer</div>
       <div class="balloon-hint">
@@ -585,11 +580,6 @@
   <!-- ── HOME ── -->
   <div class="page active" id="page-home">
     <div class="wrap">
-      <div class="home-badge">
-        <div class="home-badge-dot"></div>
-        Open to internships &amp; co-ops · 2025
-      </div>
-
       <h1 class="home-name">Jaineel<br>Patel</h1>
 
       <p class="home-role">Computer Engineering Student &amp; Full-Stack Developer</p>
